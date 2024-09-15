@@ -1,0 +1,4 @@
+package DaggerDI
+
+class Tire {
+}

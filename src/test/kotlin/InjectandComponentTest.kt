@@ -1,6 +1,7 @@
 import DaggerDI.CarComponent
 import DaggerDI.DaggerCarComponent
 import DaggerDI.Engine
+import DaggerDI.RoundTire
 import org.junit.jupiter.api.BeforeAll
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -23,6 +24,13 @@ class InjectandComponentTest {
         val car =  carComponent.getCar()
         assertIs<Engine>(car.engine)
     }
+    @Test
+    fun testForModulesBindsandProvides(){
+       val car = carComponent.getCar()
+        assertEquals(car.dashBoard.color ,4)
+        //assertIs<RoundTire>(car.tire)
+    }
+
 
 
 }

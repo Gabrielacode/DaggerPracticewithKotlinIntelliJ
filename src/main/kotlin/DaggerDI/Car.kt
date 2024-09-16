@@ -1,7 +1,9 @@
 package DaggerDI
 
 import javax.inject.Inject
+import javax.inject.Scope
 
+@SingleInstance
 class Car  @Inject constructor( val tire:Tire,val dashBoard:DashBoard){
     @Inject
     lateinit var engine:Engine //For kotlin when injecting using field injection
@@ -24,4 +26,18 @@ class Car  @Inject constructor( val tire:Tire,val dashBoard:DashBoard){
         println("Car has been created")
     }
 }
+
+//There are some times we want to share one instance of a type or dependency through out the dependency graph
+//To do that we use Scope annotations
+//Scope annotations define the how instances of a type are created as the share the same lifetime as a component
+//For example if we annotate
+//The component with @Singleton and the Car class with @Singleton
+//Then for each component instance then only one car is instance is created and used no matter how many times we call the get Car function
+//The singleton name  doesnt matter as any scope annotation with any name can do that
+//For that we will create a new scope annotation and put on both Car class and CarComponent
+
+@Scope
+@MustBeDocumented
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SingleInstance{}
 

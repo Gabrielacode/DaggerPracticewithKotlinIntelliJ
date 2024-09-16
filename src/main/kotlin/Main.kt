@@ -13,6 +13,12 @@ fun main(args: Array<String>) {
    val carComponentBuilder = DaggerCarComponent.builder().buildCarComponent()
     println(car.listofLicences)
     println(car.mapofKeystoPouchNumber)
+
+    //Set scope of car in Car Component
+    val car1  = carComponent.getCar()
+    val car2 = carComponent.getCar()
+    println(car1 == car2)
+    println(car1)
 }
 //PLS NOTE WHEN WORK WITH INTELLI J YOU MIGHT RUN INTO SOME ISSUES
 /*

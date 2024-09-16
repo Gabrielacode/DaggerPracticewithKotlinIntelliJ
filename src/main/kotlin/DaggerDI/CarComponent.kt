@@ -10,6 +10,7 @@ import dagger.multibindings.IntoSet
 import dagger.multibindings.StringKey
 
 @Component(modules = [TireAndDashBoardModule::class, OneLicenceAndPouch::class,ManyLicencesAndPouch::class])
+@SingleInstance
 interface CarComponent {
     fun getCar():Car
 

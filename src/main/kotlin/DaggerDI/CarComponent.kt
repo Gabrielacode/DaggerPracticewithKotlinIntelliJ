@@ -1,6 +1,7 @@
 package DaggerDI
 
 import dagger.Binds
+import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,9 @@ interface CarComponent {
     interface CarComponentBuilder{
         //If our modules are classes we should also provide a method for our modules
         fun buildCarComponent():CarComponent
+        @BindsInstance fun buildCarComponentwithCustomEngine( engine:Engine):CarComponentBuilder
+        //This tells Dagger that the instance of Engine or of type Engine is used when a dependency of type Engine is needed through out the dependency graph
+        //This helps us to pass our own custom instances at runtime
     }
     //If we have Component.Builder we should not have a Component.Factory as well
 }

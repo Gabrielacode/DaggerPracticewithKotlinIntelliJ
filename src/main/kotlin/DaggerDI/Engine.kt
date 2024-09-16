@@ -3,5 +3,5 @@ package DaggerDI
 import javax.inject.Inject
 
 class Engine @Inject constructor(){
-    val valves = 8
+    var valves = 8
 }

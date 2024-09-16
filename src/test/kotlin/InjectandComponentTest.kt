@@ -8,12 +8,12 @@ import kotlin.test.assertNotEquals
 
 
 class InjectandComponentTest {
-     var carComponent : CarComponent = DaggerCarComponent.create()
+     var carComponent : CarComponent = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine()).buildCarComponent()
 
     @Test
     fun checkWhetherCarComponent(){
         //Since we start we will test that the car instance that was injected used the proper car constructor
-        val carComponent = DaggerCarComponent.create()
+        val carComponent = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine()).buildCarComponent()
         val car  = carComponent.getCar()
         assertEquals(car.tires,4)
     }
@@ -44,6 +44,13 @@ class InjectandComponentTest {
     fun useSubComponents(){
         val mechanicRoomComponent = carComponent.getMechanicRoom().build()
         assertEquals(mechanicRoomComponent.getEngine().valves,carComponent.getCar().engine.valves)
+    }
+
+    @Test
+    fun useBindsInstanceforEngine(){
+        val carComponent1 = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine()).buildCarComponent()
+        val customCarCompont = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine().apply { valves =456 }).buildCarComponent()
+        assertNotEquals(carComponent1.getCar().engine.valves,customCarCompont.getCar().engine.valves)
     }
 
 

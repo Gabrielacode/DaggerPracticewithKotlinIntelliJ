@@ -4,12 +4,13 @@ import DaggerDI.Engine
 import DaggerDI.RoundTire
 
 fun main(args: Array<String>) {
-   val carComponent:CarComponent = DaggerCarComponent.create()
+   val carComponent:CarComponent = DaggerCarComponent.builder().buildCarComponent()
    val car =  carComponent.getCar()
    //Here we will check whether the engine of the car was injected into it by field injection
    println(car.engine is Engine)
     println(car.dashBoard)
     println("Tire is a Round Tire ${car.tire is RoundTire}")
+   val carComponentBuilder = DaggerCarComponent.builder().buildCarComponent()
 }
 //PLS NOTE WHEN WORK WITH INTELLI J YOU MIGHT RUN INTO SOME ISSUES
 /*

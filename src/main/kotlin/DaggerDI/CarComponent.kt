@@ -18,7 +18,8 @@ interface CarComponent {
     fun getMechanicRoom():MechanicRoom.MechanicRoomBuilder
     //We can get subcomponents from the parent component as we pass the subcomponent builder or factory
 
-
+//We can also pass an instance of a class for Dagger to inject its Dependencies
+    fun injectCar(car:Car) //We can return car to chain it
 
     @Component.Builder //This tells Dagger that it should provide an implementation of this interface that is a builder of Component
     interface CarComponentBuilder{

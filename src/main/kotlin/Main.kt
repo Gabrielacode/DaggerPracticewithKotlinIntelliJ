@@ -1,7 +1,4 @@
-import DaggerDI.CarComponent
-import DaggerDI.DaggerCarComponent
-import DaggerDI.Engine
-import DaggerDI.RoundTire
+import DaggerDI.*
 
 fun main(args: Array<String>) {
    val carComponent:CarComponent = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine()).buildCarComponent()
@@ -26,6 +23,10 @@ fun main(args: Array<String>) {
     val carComponentwithCustomEngine = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine().apply { valves = 145 }).buildCarComponent()
     val carwithCustomEng = carComponentwithCustomEngine.getCar()
     println(carwithCustomEng.engine.valves)
+
+    val carwithoutCustomEngine  = car
+    carComponentwithCustomEngine.injectCar(carwithoutCustomEngine)
+    println("As we can know see the car has the custom engine ${carwithoutCustomEngine.engine.valves}")
 
 }
 //PLS NOTE WHEN WORK WITH INTELLI J YOU MIGHT RUN INTO SOME ISSUES

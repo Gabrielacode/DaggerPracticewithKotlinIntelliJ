@@ -53,6 +53,15 @@ class InjectandComponentTest {
         assertNotEquals(carComponent1.getCar().engine.valves,customCarCompont.getCar().engine.valves)
     }
 
+    @Test
+    fun injectCustomEngineintoCarwithCustomEngine(){
+        val customEngineCarComponent = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine().apply { valves = 200 }).buildCarComponent()
+        val normalCarComponent = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine()).buildCarComponent()
+        val normalCar = normalCarComponent.getCar()
+        customEngineCarComponent.injectCar(normalCar)
+        assertEquals(normalCar.engine.valves,200)
+    }
+
 
 
 }

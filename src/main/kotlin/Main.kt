@@ -1,7 +1,7 @@
 import DaggerDI.*
 
 fun main(args: Array<String>) {
-   val carComponent:CarComponent = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine()).buildCarComponent()
+   val carComponent:CarComponent = DaggerCarComponent.builder().buildCarComponentwithCustomMainEngine(Engine()).buildCarComponent()
    val car =  carComponent.getCar()
    //Here we will check whether the engine of the car was injected into it by field injection
    println(car.engine is Engine)
@@ -20,7 +20,7 @@ fun main(args: Array<String>) {
     println(car1.engine.valves == mechanicRoom.getEngine().valves)
     //As we see the subcomponent  get values from the main component
 
-    val carComponentwithCustomEngine = DaggerCarComponent.builder().buildCarComponentwithCustomEngine(Engine().apply { valves = 145 }).buildCarComponent()
+    val carComponentwithCustomEngine = DaggerCarComponent.builder().buildCarComponentwithCustomMainEngine(Engine().apply { valves = 145 }).buildCarComponent()
     val carwithCustomEng = carComponentwithCustomEngine.getCar()
     println(carwithCustomEng.engine.valves)
 
@@ -28,6 +28,8 @@ fun main(args: Array<String>) {
     carComponentwithCustomEngine.injectCar(carwithoutCustomEngine)
     println("As we can know see the car has the custom engine ${carwithoutCustomEngine.engine.valves}")
 
+    //Since we have added a spare engine qualifier
+     println("Spare Engine : ${carwithoutCustomEngine.spareEngine.valves}")
 }
 //PLS NOTE WHEN WORK WITH INTELLI J YOU MIGHT RUN INTO SOME ISSUES
 /*

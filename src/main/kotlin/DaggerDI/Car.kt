@@ -1,14 +1,25 @@
 package DaggerDI
 
 import javax.inject.Inject
+import javax.inject.Qualifier
 import javax.inject.Scope
 
 @SingleInstance
 class Car  @Inject constructor( val tire:Tire,val dashBoard:DashBoard){
     @Inject
+    @MainEngine
     lateinit var engine:Engine //For kotlin when injecting using field injection
      //set the field to have lateinit if not it will compile to private null as in Kotlin fields are complied into private Java fields with public setters and getters
      //We are going to use field injection to inject a field of type Engine into the Car class
+
+    @Inject
+    @SpareEngine
+    lateinit var spareEngine:Engine
+    //Some time we want to pass different instances of a type depending on the situation or field
+    //For example in the class Car we have two engines one is the main and one is the spare
+    //We dont want the spare engine to have the same number of valves as the main
+    //so we use @Qualifiers we create or custom own  qualifier annotations
+    //and apply them to the main and spare engine
     val tires = 4
     @Inject
     lateinit var listofLicences:Set< @JvmSuppressWildcards String>
@@ -40,4 +51,16 @@ class Car  @Inject constructor( val tire:Tire,val dashBoard:DashBoard){
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 annotation class SingleInstance{}
+
+
+//This is for the main engine
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class MainEngine
+//This is for the spare engine
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class SpareEngine
+
 

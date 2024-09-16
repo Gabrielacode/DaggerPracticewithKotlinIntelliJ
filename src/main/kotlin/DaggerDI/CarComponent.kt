@@ -25,7 +25,8 @@ interface CarComponent {
     interface CarComponentBuilder{
         //If our modules are classes we should also provide a method for our modules
         fun buildCarComponent():CarComponent
-        @BindsInstance fun buildCarComponentwithCustomEngine( engine:Engine):CarComponentBuilder
+        @BindsInstance fun buildCarComponentwithCustomMainEngine( @MainEngine engine:Engine):CarComponentBuilder
+
         //This tells Dagger that the instance of Engine or of type Engine is used when a dependency of type Engine is needed through out the dependency graph
         //This helps us to pass our own custom instances at runtime
     }
@@ -43,6 +44,12 @@ abstract class TireAndDashBoardModule(){
          @Provides
          fun providesDashBoard():DashBoard{
              return DashBoard.Builder().setColor(4).steeringSize(12).build()
+         }
+
+         @Provides
+         @SpareEngine
+         fun providesSpareEngine():Engine{
+             return Engine().apply { valves =12 }
          }
      }
 

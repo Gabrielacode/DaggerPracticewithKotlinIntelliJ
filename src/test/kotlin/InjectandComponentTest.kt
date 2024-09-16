@@ -1,8 +1,6 @@
 import DaggerDI.CarComponent
 import DaggerDI.DaggerCarComponent
 import DaggerDI.Engine
-import DaggerDI.RoundTire
-import org.junit.jupiter.api.BeforeAll
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -40,6 +38,12 @@ class InjectandComponentTest {
         val carComponent2 = DaggerCarComponent.builder().buildCarComponent()
         val car3  = carComponent2.getCar()
         assertNotEquals(car3,car1)
+    }
+
+    @Test
+    fun useSubComponents(){
+        val mechanicRoomComponent = carComponent.getMechanicRoom().build()
+        assertEquals(mechanicRoomComponent.getEngine().valves,carComponent.getCar().engine.valves)
     }
 
 

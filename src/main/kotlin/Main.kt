@@ -19,6 +19,10 @@ fun main(args: Array<String>) {
     val car2 = carComponent.getCar()
     println(car1 == car2)
     println(car1)
+    val mechanicRoom = carComponent.getMechanicRoom().build()
+    println(car1.engine.valves == mechanicRoom.getEngine().valves)
+    //As we see the subcomponent  get values from the main component
+
 }
 //PLS NOTE WHEN WORK WITH INTELLI J YOU MIGHT RUN INTO SOME ISSUES
 /*

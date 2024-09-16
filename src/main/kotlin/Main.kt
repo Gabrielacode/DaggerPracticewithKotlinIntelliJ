@@ -11,6 +11,8 @@ fun main(args: Array<String>) {
     println(car.dashBoard)
     println("Tire is a Round Tire ${car.tire is RoundTire}")
    val carComponentBuilder = DaggerCarComponent.builder().buildCarComponent()
+    println(car.listofLicences)
+    println(car.mapofKeystoPouchNumber)
 }
 //PLS NOTE WHEN WORK WITH INTELLI J YOU MIGHT RUN INTO SOME ISSUES
 /*

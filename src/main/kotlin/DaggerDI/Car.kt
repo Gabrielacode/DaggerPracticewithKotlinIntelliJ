@@ -64,3 +64,9 @@ annotation class MainEngine
 annotation class SpareEngine
 
 
+//We can also state @BindOptionalOf
+//This tells Dagger that if a Binding of this type is available or it knows how to create this type it should
+//If not return null
+//This is should be all for now
+//We also have Dagger for Aynchronous Operation and Assisted DI which is in the documentation
+//We will then use Dagger on Android
